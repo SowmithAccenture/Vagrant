@@ -1,0 +1,34 @@
+---
+- name: Install Java, JDK, and Maven on Windows
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Install Chocolatey (package manager for Windows)
+      win_command: "powershell -Command Set-ExecutionPolicy Unrestricted -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
+      args:
+        creates: "C:\\ProgramData\\chocolatey"
+
+    - name: Install OpenJDK 11 using Chocolatey
+      win_chocolatey:
+        name: openjdk11
+        state: present
+
+    - name: Install Maven using Chocolatey
+      win_chocolatey:
+        name: maven
+        state: present
+
+    - name: Verify Java Installation
+      win_command: java -version
+      register: java_version
+      changed_when: false
+
+    - name: Verify Maven Installation
+      win_command: mvn -v
+      register: maven_version
+      changed_when: false
+
+    - name: Show Java and Maven versions
+      debug:
+        msg: "Java version: {{ java_version.stdout }}, Maven version: {{ maven_version.stdout }}"
