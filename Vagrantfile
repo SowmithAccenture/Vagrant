@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
   config.winrm.password = "vagrant"
 
   # Set up a private network (optional)
-  config.vm.network "private_network", type: "dhcp"
+  config.vm.network "private_network", ip: "192.168.56.10" # Assign a static IP
 
   # Enable RDP for Windows VM (optional, if you want GUI access)
   # config.vm.network "forwarded_port", guest: 3389, host: 3389  # RDP
