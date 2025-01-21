@@ -7,6 +7,8 @@ Vagrant.configure("2") do |config|
     vb.memory = "8192" # Adjust memory as needed
     vb.cpus = 4        # Adjust CPU count as needed
   end
+  
+  config.vm.provision "shell", path: "enable_winrm.ps1"
 
   # Set up a private network (optional)
   config.vm.network "private_network", type: "dhcp"
@@ -22,6 +24,7 @@ Vagrant.configure("2") do |config|
 
   # Set Windows-specific configuration options
   config.vm.guest = :windows
+  config.vm.communicator = "winrm"
   config.vm.winrm.username = "vagrant"
   config.vm.winrm.password = "vagrant"
 end
