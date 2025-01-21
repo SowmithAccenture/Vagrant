@@ -1,6 +1,7 @@
 Vagrant.configure("2") do |config|
   # Use a Windows base image
-  config.vm.box = "gusztavvargadr/windows-10"
+  config.vm.box = "StefanScherer/windows_10"
+  config.vm.box_version = "2021.12.09"
 
   # Set VM properties
   config.vm.provider "virtualbox" do |vb|
@@ -24,6 +25,7 @@ Vagrant.configure("2") do |config|
 
   # Set Windows-specific configuration options
   config.vm.guest = :windows
+  config.vm.communicator = "winrm"
   config.vm.winrm.username = "vagrant"
   config.vm.winrm.password = "vagrant"
 end
