@@ -15,14 +15,13 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 3389, host: 3389  # RDP
 
   # Provision with Ansible (you'll need to configure Windows to accept Ansible)
-  config.vm.provision "ansible_local" do |ansible|
+  config.vm.provision "ansible" do |ansible|
     ansible.playbook = "install_java_maven.yml"
     ansible.host_key_checking = false  # Disable host key checking
   end
 
   # Set Windows-specific configuration options
   config.vm.guest = :windows
-  config.vm.communicator = "winrm"
   config.vm.winrm.username = "vagrant"
   config.vm.winrm.password = "vagrant"
 end
