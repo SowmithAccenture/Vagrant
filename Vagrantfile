@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", ip: "192.168.56.10" # Assign a static IP
 
   # Enable RDP for Windows VM (optional, if you want GUI access)
-  config.vm.network "forwarded_port", guest: 3389, host: 3389  # RDP
+  config.vm.network "forwarded_port", guest: 3389, host: 53390  # RDP
 
   # Provision with Ansible (you'll need to configure Windows to accept Ansible)
   config.vm.provision "ansible" do |ansible|
