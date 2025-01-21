@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
   # Use a Windows base image
-  config.vm.box = "gusztavvargadr/windows-10"
-  config.vm.box_version = "2202.0.2409"
+  config.vm.box = "StefanScherer/windows_10"
+  config.vm.box_version = "2021.12.09"
 
   # Set VM properties
   config.vm.provider "virtualbox" do |vb|
